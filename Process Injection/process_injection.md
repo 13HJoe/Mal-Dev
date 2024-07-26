@@ -49,7 +49,7 @@
 		  ```
 			- Halt program till thread finishes execution (time set to `INFINITE`)
 				- `WaitForSingleObject(hThread, INFINITE)`
-		-
+----
 - **process-injection.cpp**
 	- Step 0 -> Get a Handle to an existing process
 		-
